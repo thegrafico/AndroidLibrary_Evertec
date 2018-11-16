@@ -43,13 +43,17 @@ if you want to make a request for *Debit Transaction*
         ...  //here are more fill methods
         ...
         ...
-        //init the ProcessResponse, this is the same for all request, the only that change is the parameters.
-        //the parameters for this request are: the object that we are fill up and the respective listener for it.
+         /*
+          *init the ProcessResponse, this is the same for all request,
+           the only that change is the parameters.
+          *The parameters for this request are: the object that we are
+           fill up and the respective listener for it.
+         */
         new ProcessResponse(processDebit,  new DebitListenerResponse() {
             @Override
             public void downloadCompleted(String result, ResponseDebit response) {
                 Log.d("Result: ", result); //the result we get
-                Log.d("Response: ", response.toString()); //Response object where we can manipulate Data. 
+                Log.d("Response: ", response.toString()); //Response object where we can manipulate Data.
             }
         }).execute();
 
