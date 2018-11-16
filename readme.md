@@ -27,4 +27,31 @@ The request Folder is one of the most important. Is in charge to make the reques
 
 ## Response:
 
-This is the main Folder. Here we call the Request file and use it. Here are our 7 objects in form of Constructor. When a constructor is called, the logic of Request is activated and the Response is send to the respective Listener. all this Process is running in background, so, our main thread is not blocked and we can do more stuff. The process that run on background wait until the request is finish, then the function onPostExecute is called automatic and this function is where our listener is fill out. you can find the onPostExecute function on Response File.   
+This is the main Folder. Here we call the Request file and use it. Here are our 7 objects in form of Constructor. When a constructor is called, the logic of Request is activated and the Response is send to the respective Listener. all this Process is running on background, so, our main thread is not blocked and we can do more stuff. The process that run on background wait until the request is finish, then the function onPostExecute is called automatic and this function is where our listener is fill out. you can find the onPostExecute function on Response File.
+
+## Examples:
+if you want to make a request for *Debit Transaction*
+  ```
+  //init the Request that you want to make request
+  ProcessDebit_Request processDebit = new ProcessDebit_Request();
+    //fill up the request with the date
+        processDebit.setUsername("Jesus123");
+        processDebit.setPassword("1234");
+        processDebit.setAccountID("001");
+        processDebit.setCustomerName("jesus");
+        processDebit.setCustomerEmail("test@test.com");
+        ...  //here are more fill methods
+        ...
+        ...
+        //init the ProcessResponse, this is the same for all request, the only that change is the parameters.
+        //the parameters for this request are: the object that we are fill up and the respective listener for it.
+        new ProcessResponse(processDebit,  new DebitListenerResponse() {
+            @Override
+            public void downloadCompleted(String result, ResponseDebit response) {
+                Log.d("Result: ", result); //the result we get
+                Log.d("Response: ", response.toString()); //Response object where we can manipulate Data. 
+            }
+        }).execute();
+
+  ```
+  as you can see,
