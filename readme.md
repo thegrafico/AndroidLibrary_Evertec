@@ -90,7 +90,7 @@ if you want to make a request for *Debit Transaction*
 as we can see, the process is similar to the last one, the most important change is
   - Wallet Transaction have different data to fill
   - ProcessResponse parameters are different
-  - For each request the parameters of ProcessResponse change, but the call the class don't.
+  - For each request the parameters of ProcessResponse change, but the call of the class don't.
 
 ## Note:
 
