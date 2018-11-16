@@ -58,4 +58,43 @@ if you want to make a request for *Debit Transaction*
         }).execute();
 
   ```
-  as you can see,
+  as you can see, we first fill the request object, then create the ProcessResponse, what is the same for all request, and there we received the response object.
+
+  Another Example using *Wallet Transaction*
+
+  ```
+  //create the object
+       ProcessWalletTransaction_Request walletT= new ProcessWalletTransaction_Request();
+       //fill the object
+       walletT.setUsername("Jesus123");
+       walletT.setPassword("1234");
+       walletT.setAccountNumber("123456");
+       walletT.setTrxOper("sale");
+       walletT.setTrxID("123456");
+       walletT.setTrxAmout("0.01");
+       walletT.setRefNumber("");
+       walletT.setFiller1("TESTING");
+       walletT.setTrxDescription("Jesus");
+
+       //execute the Process with the object Filled.
+       new ProcessResponse(walletT,  new WalletListenerResponse() {
+           @Override
+           public void downloadCompleted(String result, ResponseWalletTransaction response) {
+               Log.d("Result: ", result);
+               Log.d("Response: ", response.toString());
+
+           }
+
+       }).execute();
+  ```  
+as we can see, the process is similar to the last one, the most important change is
+  - Wallet Transaction have different data to fill
+  - ProcessResponse parameters are different
+  - For each request the parameters of ProcessResponse change, but the call the class don't.
+
+## Note:
+
+- You can read the method have available to make Request (7 possible ways to do it).
+- The application was tested with a personal NodeJs server and https://app.apiary.io. if you want to test you need
+  a server or you can test it on apiary. changing the URL in the file *makeRequest* for the URl of apiary.
+- Still the API is not complete, there are some important change to do, like data validation.
