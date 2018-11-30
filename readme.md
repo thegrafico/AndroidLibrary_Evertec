@@ -121,6 +121,9 @@ Example getting the data via Intent *Process Transaction Search*
 ```
 //====================Retrieving the object on another activity====================
 
+  //create the intent
+  val intent = intent
+
   //create object response to get the data via Intent
   val resp =  intent.getSerializableExtra("PROCESS_TRANSACTION") as ResponseTransactionSearch
 
