@@ -140,5 +140,6 @@ as we can see, the process is similar to the last one, the most important change
 - The application was tested with a personal NodeJs server and https://app.apiary.io. if you want to test you need
   a server or you can test it on apiary. changing the URL in the file *makeRequest* for the URl of apiary.
 - Still the API is not complete, there are some important change to do, like data validation.
+- A Demo App is available on the other repo (link below). (The code is wrote on Java and Kotlin)
 
 In this Repo, is only available the code, if you want to see the android full project and the process of creating a API, go to this other Repo: https://github.com/thegrafico/Android_Library_EVT
