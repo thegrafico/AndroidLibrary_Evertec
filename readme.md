@@ -30,96 +30,98 @@ The request Folder is one of the most important. Is in charge to make the reques
 This is the main Folder. Here we call the Request file and use it. Here are our 7 objects in form of Constructor. When a constructor is called, the logic of Request is activated and the Response is send to the respective Listener. all this Process is running on background, so, our main thread is not blocked and we can do more stuff. The process that run on background wait until the request is finish, then the function onPostExecute is called automatic and this function is where our listener is fill out. you can find the onPostExecute function on Response File.
 
 ## Examples:
-if you want to make a request for *Debit Transaction*
+1-) if you want to make a request for *Debit Transaction*
   ```
   //init the Request that you want to make request
   ProcessDebit_Request processDebit = new ProcessDebit_Request();
-    //fill up the request with the date
-        processDebit.setUsername("Jesus123");
-        processDebit.setPassword("1234");
-        processDebit.setAccountID("001");
-        processDebit.setCustomerName("jesus");
-        processDebit.setCustomerEmail("test@test.com");
-        ...  //here are more fill methods
-        ...
-        ...
-         /*
-          *init the ProcessResponse, this is the same for all request,
-           the only that change is the parameters.
-          *The parameters for this request are: the object that we are
-           fill up and the respective listener for it.
-         */
-        new ProcessResponse(processDebit,  new DebitListenerResponse() {
-            @Override
-            public void downloadCompleted(String result, ResponseDebit response) {
-                Log.d("Result: ", result); //the result we get
-                Log.d("Response: ", response.toString()); //Response object where we can manipulate Data.
-            }
-        }).execute();
+
+  //fill up the request with the date
+    processDebit.setUsername("Jesus123");
+    processDebit.setPassword("1234");
+    processDebit.setAccountID("001");
+    processDebit.setCustomerName("jesus");
+    processDebit.setCustomerEmail("test@test.com");
+    ...  //here are more fill methods
+    ...
+    ...
+     /*
+      *init the ProcessResponse, this is the same for all request,
+       the only that change is the parameters.
+      *The parameters for this request are: the object that we are
+       fill up and the respective listener for it.
+     */
+    new ProcessResponse(processDebit,  new DebitListenerResponse() {
+        @Override
+        public void downloadCompleted(String result, ResponseDebit response) {
+            Log.d("Result: ", result); //the result we get
+            Log.d("Response: ", response.toString()); //Response object where we can manipulate Data.
+        }
+    }).execute();
 
   ```
   as you can see, we first fill the request object, then create the ProcessResponse, what is the same for all request, and there we received the response object.
 
-  Another Example using *Wallet Transaction*
+2-) Another Example using *Wallet Transaction*
 
   ```
   //create the object
-       ProcessWalletTransaction_Request walletT= new ProcessWalletTransaction_Request();
-       //fill the object
-       walletT.setUsername("Jesus123");
-       walletT.setPassword("1234");
-       walletT.setAccountNumber("123456");
-       walletT.setTrxOper("sale");
-       walletT.setTrxID("123456");
-       walletT.setTrxAmout("0.01");
-       walletT.setRefNumber("");
-       walletT.setFiller1("TESTING");
-       walletT.setTrxDescription("Jesus");
+   ProcessWalletTransaction_Request walletT= new ProcessWalletTransaction_Request();
+   //fill the object
+   walletT.setUsername("Jesus123");
+   walletT.setPassword("1234");
+   walletT.setAccountNumber("123456");
+   walletT.setTrxOper("sale");
+   walletT.setTrxID("123456");
+   walletT.setTrxAmout("0.01");
+   walletT.setRefNumber("");
+   walletT.setFiller1("TESTING");
+   walletT.setTrxDescription("Jesus");
 
-       //execute the Process with the object Filled.
-       new ProcessResponse(walletT,  new WalletListenerResponse() {
-           @Override
-           public void downloadCompleted(String result, ResponseWalletTransaction response) {
-               Log.d("Result: ", result);
-               Log.d("Response: ", response.toString());
+   //execute the Process with the object Filled.
+   new ProcessResponse(walletT,  new WalletListenerResponse() {
+       @Override
+       public void downloadCompleted(String result, ResponseWalletTransaction response) {
+           Log.d("Result: ", result);
+           Log.d("Response: ", response.toString());
+       }
+   }).execute();
+```  
 
-           }
+Until here, we only give you examples showing the response result, in the following example,
+we show you show you how to pass the response object via Intent to another activity.
 
-       }).execute();
-  ```  
 
-Ultil here, we only give you examples showing the response result, in the following example, we show you show
-you how to pass the response objet via Intent to another activity.
-
-Example using *Process Transaction Search* & Kotlin Programming language
+3-) Example using *Process Transaction Search* & Kotlin Programming language
 
 ```
-//create the object
-          //object Process Transaction Search
-          val transactionSearch = ProcessTransactionSearch_Request()
-          //fill the object with user input
-          transactionSearch.username          = userName.text.toString() //userName = TextInputEditText
-          transactionSearch.password          = pass.text.toString() //pass = TextInputEditText
+//==========================Sending the object=======================================
+  //object Process Transaction Search
+  val transactionSearch = ProcessTransactionSearch_Request()
+  //fill the object with user input
+  transactionSearch.username          = userName.text.toString() //userName = TextInputEditText
+  transactionSearch.password          = pass.text.toString() //pass = TextInputEditText
 
-          //call the ProcessResponse to make request and get response
-          ProcessResponse(transactionSearch, TransactionSearchListenerResponse { result, response ->
+  //call the ProcessResponse to make request and get response
+  ProcessResponse(transactionSearch, TransactionSearchListenerResponse { result, response ->
 
-            //put the response into a Intent
-             loginIntent.putExtra("PROCESS_TRANSACTION", response)
+    //put the response into a Intent
+     loginIntent.putExtra("PROCESS_TRANSACTION", response)
 
-             //if we get the corret data validated from our server
-             if(response!!.responseValidated == "TRUE")
-                 startActivity(loginIntent) //go to another activity with the data
-             else
-                 Toast.makeText(applicationContext, "User not register", Toast.LENGTH_SHORT).show() // error handled
-          }).execute()
+     //if we get the corret data validated from our server
+     if(response!!.responseValidated == "TRUE")
+         startActivity(loginIntent) //go to another activity with the data
+     else
+         Toast.makeText(applicationContext, "User not register", Toast.LENGTH_SHORT).show() // error handled
+  }).execute()
 ```
 
 Example getting the data via Intent *Process Transaction Search*
 
 ```
-//create object response to get the data via Intent
-val resp: ResponseTransactionSearch = intent.getSerializableExtra("PROCESS_TRANSACTION") as ResponseTransactionSearch
+//====================Retrieving the object on another activity====================
+
+  //create object response to get the data via Intent
+  val resp: ResponseTransactionSearch = intent.getSerializableExtra("PROCESS_TRANSACTION") as ResponseTransactionSearch
 
 ```
 
