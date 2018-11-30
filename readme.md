@@ -87,6 +87,42 @@ if you want to make a request for *Debit Transaction*
 
        }).execute();
   ```  
+
+Ultil here, we only give you examples showing the response result, in the following example, we show you show
+you how to pass the response objet via Intent to another activity.
+
+Example using *Process Transaction Search* & Kotlin Programming language
+
+```
+//create the object
+          //object Process Transaction Search
+          val transactionSearch = ProcessTransactionSearch_Request()
+          //fill the object with user input
+          transactionSearch.username          = userName.text.toString() //userName = TextInputEditText
+          transactionSearch.password          = pass.text.toString() //pass = TextInputEditText
+
+          //call the ProcessResponse to make request and get response
+          ProcessResponse(transactionSearch, TransactionSearchListenerResponse { result, response ->
+
+            //put the response into a Intent
+             loginIntent.putExtra("PROCESS_TRANSACTION", response)
+
+             //if we get the corret data validated from our server
+             if(response!!.responseValidated == "TRUE")
+                 startActivity(loginIntent) //go to another activity with the data
+             else
+                 Toast.makeText(applicationContext, "User not register", Toast.LENGTH_SHORT).show() // error handled
+          }).execute()
+```
+
+Example getting the data via Intent *Process Transaction Search*
+
+```
+//create object response to get the data via Intent
+val resp: ResponseTransactionSearch = intent.getSerializableExtra("PROCESS_TRANSACTION") as ResponseTransactionSearch
+
+```
+
 as we can see, the process is similar to the last one, the most important change is
   - Wallet Transaction have different data to fill
   - ProcessResponse parameters are different
