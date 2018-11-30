@@ -135,7 +135,7 @@ as we can see, the process is similar to the last one, the most important change
   - For each request the parameters of ProcessResponse change, but the call of the class don't.
 
 ## Note:
-- REMEMBER CHANGE THE ALL URLs IN THE FILE "MakeRequest". THE URL IS WHERE YOUR REQUEST IS BEING PROCESSED
+- REMEMBER CHANGE ALL URLs IN THE FILE "MakeRequest". THE URL IS WHERE YOUR REQUEST IS BEING PROCESSED
 - You can read the method have available to make Request (7 possible ways to do it).
 - The application was tested with a personal NodeJs server and https://app.apiary.io. if you want to test you need
   a server or you can test it on apiary. changing the URL in the file *makeRequest* for the URl of apiary.
