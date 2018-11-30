@@ -81,6 +81,7 @@ This is the main Folder. Here we call the Request file and use it. Here are our 
    new ProcessResponse(walletT,  new WalletListenerResponse() {
        @Override
        public void downloadCompleted(String result, ResponseWalletTransaction response) {
+          //Here we get the response Result
            Log.d("Result: ", result);
            Log.d("Response: ", response.toString());
        }
@@ -111,7 +112,7 @@ we show you show you how to pass the response object via Intent to another activ
      if(response!!.responseValidated == "TRUE")
          startActivity(loginIntent) //go to another activity with the data
      else
-         Toast.makeText(applicationContext, "User not register", Toast.LENGTH_SHORT).show() // error handled
+       Toast.makeText(applicationContext, "User not register", Toast.LENGTH_SHORT).show()
   }).execute()
 ```
 
@@ -121,7 +122,7 @@ Example getting the data via Intent *Process Transaction Search*
 //====================Retrieving the object on another activity====================
 
   //create object response to get the data via Intent
-  val resp: ResponseTransactionSearch = intent.getSerializableExtra("PROCESS_TRANSACTION") as ResponseTransactionSearch
+  val resp =  intent.getSerializableExtra("PROCESS_TRANSACTION") as ResponseTransactionSearch
 
 ```
 
