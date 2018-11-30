@@ -8,8 +8,10 @@
 
 package com.thegrafico.raul.evertectest.Modals.Response;
 
+import java.io.Serializable;
+
 //class
-public class ResponseTransactionSearch {
+public class ResponseTransactionSearch implements Serializable {
 
     //Variables Response
     private String
@@ -24,7 +26,8 @@ public class ResponseTransactionSearch {
                     trxDateTime     = null,
                     trxID           = null,
                     trxoper         = null,
-                    trxtype         = null;
+                    trxtype         = null,
+                    responseValidated = null;
     //Constructor
     public ResponseTransactionSearch(){
         super();
@@ -46,6 +49,7 @@ public class ResponseTransactionSearch {
                 ", trxID='" + trxID + '\'' +
                 ", trxoper='" + trxoper + '\'' +
                 ", trxtype='" + trxtype + '\'' +
+                ", Validated? ='" + responseValidated+ '\'' +
                 '}';
     }
 
@@ -62,8 +66,8 @@ public class ResponseTransactionSearch {
         return batchNumber;
     }
 
-    public void setbatchNumber(String bathNumber) {
-        this.batchNumber = bathNumber;
+    public void setbatchNumber(String batchNumber) {
+        this.batchNumber = batchNumber;
     }
 
     public String getMerchantid() {
@@ -145,4 +149,8 @@ public class ResponseTransactionSearch {
     public void setTrxtype(String trxtype) {
         this.trxtype = trxtype;
     }
+
+    public String getResponseValidated() {return responseValidated;}
+
+    public void setResponseValidated(String responseValidated) {this.responseValidated = responseValidated;}
 }

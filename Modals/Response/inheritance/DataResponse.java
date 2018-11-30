@@ -1,8 +1,11 @@
 /*This is the super constructor, Some classes inheritance from this one.*/
 
 package com.thegrafico.raul.evertectest.Modals.Response.inheritance;
-//class
-public class DataResponse {
+
+import java.io.Serializable;
+
+//Implements Serializable for passing data via Intent in  easy and fast way
+public class DataResponse implements Serializable {
 
     //we get this data from the response and we can use it on all class that inheritance from this one.
     private String

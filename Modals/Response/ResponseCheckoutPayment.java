@@ -7,8 +7,11 @@
 */
 
 package com.thegrafico.raul.evertectest.Modals.Response;
+
+import java.io.Serializable;
+
 //class
-public class ResponseCheckoutPayment {
+public class ResponseCheckoutPayment implements Serializable {
 
     //Variables Response
     private String

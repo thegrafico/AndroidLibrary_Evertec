@@ -8,8 +8,10 @@
 
 package com.thegrafico.raul.evertectest.Modals.Response;
 
+import java.io.Serializable;
+
 //class
-public class ResponseWalletTransaction {
+public class ResponseWalletTransaction implements Serializable {
 
     //Variables Response
     private String

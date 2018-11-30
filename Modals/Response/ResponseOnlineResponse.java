@@ -8,8 +8,10 @@
 
 package com.thegrafico.raul.evertectest.Modals.Response;
 
+import java.io.Serializable;
+
 //class
-public class ResponseOnlineResponse {
+public class ResponseOnlineResponse implements Serializable {
 
     //variables Response
     private String

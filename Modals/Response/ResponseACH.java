@@ -10,8 +10,10 @@ package com.thegrafico.raul.evertectest.Modals.Response;
 
 import com.thegrafico.raul.evertectest.Modals.Response.inheritance.DataResponse;
 
+import java.io.Serializable;
+
 //extends From DataResponse
-public class ResponseACH extends DataResponse {
+public class ResponseACH extends DataResponse implements Serializable {
 
     //variable Response
     private String trxOper = null;
