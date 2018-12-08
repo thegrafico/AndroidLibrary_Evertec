@@ -1,3 +1,13 @@
+
+# Import Library
+
+<dependency>
+  <groupId>com.github.thegrafico.AndroidLibrary_Evertec</groupId>
+  <artifactId>evt-payment-services</artifactId>
+  <version>1.0.0</version>
+  <type>pom</type>
+</dependency>
+
 # Android API for Web service
 
 This is an API for a web service. The main functionality of this API is to make request from a type of object that we created here. That request will return a Response and we use this Response in the way we want.
